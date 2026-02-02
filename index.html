@@ -57,8 +57,24 @@
                     </div>
                     <div class="form-group">
                         <label for="r-reason">Reason</label>
-                        <textarea id="r-reason" name="entry.6927900" rows="2"
-                            placeholder="Reason for rescheduling"></textarea>
+                        <select id="r-reason" name="entry.6927900" required>
+                            <option value="" disabled selected>Select a reason</option>
+                            <option value="Over utilisation">Over utilisation</option>
+                            <option value="PD ending late">PD ending late</option>
+                            <option value="PD finished the region">PD finished the region</option>
+                            <option value="Parking Issue">Parking Issue</option>
+                            <option value="Unable to gain access">Unable to gain access</option>
+                            <option value="Vehicle breakdown">Vehicle breakdown</option>
+                            <option value="Driver Cancellation">Driver Cancellation</option>
+                            <option value="LOGS error">LOGS error</option>
+                            <option value="Order not reflecting">Order not reflecting</option>
+                            <option value="Road Closure">Road Closure</option>
+                            <option value="Vehicle capacity issue">Vehicle capacity issue</option>
+                            <option value="PD denial">PD denial</option>
+                            <option value="No AM in the region">No AM in the region</option>
+                            <option value="No PM in the region">No PM in the region</option>
+                            <option value="Market Closure">Market Closure</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="r-facility">Facility</label>
