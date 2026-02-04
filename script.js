@@ -85,13 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = true;
 
         // Google Forms Action URL
-        const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf2_-oxjupMblR_2yOunYZkkGPpKLyicq52Wy7S83S-Fne7Gg/formResponse';
+        const GOOGLE_FORM_URL = 'https://docs.google.com/forms/u/2/d/e/1FAIpQLSf2_-oxjupMblR_2yOunYZkkGPpKLyicq52Wy7S83S-Fne7Gg/formResponse';
 
         // 1. Collect Common Data
         const commonData = {
             'entry.1434803416': document.getElementById('r-your-name').value, // Your Name
+            'entry.1569093023': document.getElementById('r-region').value,    // Region
             'entry.1739884741': document.getElementById('r-facility').value, // Facility
-            'entry.518069798': document.getElementById('r-moved-to').value,  // Moved To
             'entry.1701004695': document.getElementById('r-slack').value,    // Slack ID
             'entry.1090375788': document.getElementById('r-comments').value // Comments
         };
@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const reasonInput = block.querySelector('.d-reason');
                 const deliveriesInput = block.querySelector('.d-deliveries');
                 const pickupsInput = block.querySelector('.d-pickups');
+                const movedToInput = block.querySelector('.d-moved-to');
 
                 // Ensure driver name is filled (it's required in first block, but check others)
                 if (driverNameInput.value.trim() !== "") {
@@ -113,7 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         'entry.1468240365': driverNameInput.value,           // Driver Name
                         'entry.6927900': reasonInput.value,                  // Reason
                         'entry.835758498': deliveriesInput.value || "0",     // Deliveries
-                        'entry.1669061386': pickupsInput.value || "0"        // Pickups
+                        'entry.1669061386': pickupsInput.value || "0",       // Pickups
+                        'entry.518069798': movedToInput.value                // Moved To
                     });
                 }
             }
@@ -123,6 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // 3. Loop and Send Requests
             const submissionPromises = drivers.map(driverData => {
                 const formData = new FormData();
+
+                // Add Google Form Hidden Fields (Required for validation)
+                formData.append('fvv', '1');
+                formData.append('pageHistory', '0');
+                formData.append('fbzx', '-1128297367791050100');
 
                 // Add Common Data
                 for (const [key, value] of Object.entries(commonData)) {
